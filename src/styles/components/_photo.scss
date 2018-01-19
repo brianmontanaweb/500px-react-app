@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Photo Styles
+   ========================================================================== */
+.photo__container {
+  justify-content: space-around;
+  margin: 2rem;
+
+  @supports (display: flex) {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  @supports (display: grid) {
+    display: grid;
+    grid-template-rows: minmax(20vmin, auto);
+    grid-template-columns: repeat(auto-fill, minmax(10vmin, 30vmin));
+    grid-gap: 2vmin;
+  }
+}
+
+.photo__content {
+  height: 30vmin;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 1;
+  flex-grow: 1;
+  box-shadow: 0.1rem 0.1rem 0.25rem rgba(0, 0, 0, 0.75);
+  transform: scale(1, 1);
+  transition: box-shadow 0.25s ease,
+              transform 0.25s ease;
+
+  @supports (display: flex) {
+    flex: 1 1 30vmin;
+    margin: 0.5rem;
+  }
+
+
+  @supports (display: grid) {
+    margin: 0;
+  }
+
+  &:hover {
+    transform: scale(1.05, 1.05);
+    box-shadow: 0 0.5rem 0.75rem rgba(0, 0, 0, 0.5);
+  }
+}

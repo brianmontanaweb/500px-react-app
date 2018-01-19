@@ -1,0 +1,9 @@
+/* ==========================================================================
+   Variables Styles
+   ========================================================================== */
+//CSS variables for use in inline SVGs
+$color-primary: #2bc7e2;
+
+:root {
+  --color-primary: $color-primary;
+}

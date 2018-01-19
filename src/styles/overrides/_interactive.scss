@@ -1,0 +1,11 @@
+/* ==========================================================================
+   Interactive Styles
+   ========================================================================== */
+.sticky-menu--open .sticky-menu__toggle:after {
+  content: '+';
+  transform: translateY(25%) rotate(360deg);
+}
+
+.sticky-menu--open .sticky-menu__list {
+  transform: translateY(0) scale(1, 1);
+}

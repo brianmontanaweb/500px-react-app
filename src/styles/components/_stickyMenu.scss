@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Sticky Menu Styles
+   ========================================================================== */
+.sticky-menu {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-primary);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.5);
+}
+
+.sticky-menu__logo,
+.sticky-menu__toggle {
+  padding: 1rem;
+  margin: 0 1rem;
+}
+
+.sticky-menu__toggle {
+  position: relative;
+  cursor: pointer;
+
+  &:after {
+    content: '-';
+    position: absolute;
+    right: 0;
+    line-height: 1;
+    transform-origin: center;
+    transform: translateY(15%) rotate(0deg);
+    transition: transform 0.25s ease;
+  }
+}
+
+.sticky-menu__list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0.5rem 1rem 1rem;
+  text-align: right;
+  list-style: none;
+  background-color: inherit;
+  transform: translateY(-50%) scale(1, 0);
+  transition: transform 0.25s ease;
+}
+
+.sticky-menu__link {
+  padding: 0.25em 0.5em;
+  color: black;
+  text-decoration: none;
+  box-shadow: 0 0.2rem 0 -0.1rem rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.25s ease;
+
+  &:hover {
+    box-shadow: 0 0.75rem 0.5rem -0.5rem rgba(100, 0, 0, 0.5);
+  }
+}

@@ -1,0 +1,46 @@
+/* ==========================================================================
+   Search Form Styles
+   ========================================================================== */
+.search-form {
+  margin: 2rem;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+
+}
+
+.search-form__label {
+  margin-bottom: 0.5rem;
+  flex: 1 1 100%;
+}
+
+.search-form__input {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  border-radius: 0.25em;
+  border: 1px solid var(--color-primary);
+  padding: 0.5rem 1rem;
+  flex: 1 1 100%;
+
+
+  &:focus {
+    outline: none;
+    border: 1px dashed var(--color-primary);
+  }
+}
+
+.search-form__btn {
+  max-width: 20rem;
+  border: none;
+  padding: 1em 0.5em;
+  background-color: var(--color-primary);
+  box-shadow: 0.1em 0.1em 0 darken($color-primary, 10%);
+  margin-top: 1rem;
+  flex: 1 1 100%;
+  transition: box-shadow 0.25s ease;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0.3em 0.3em 0 darken($color-primary, 10%);
+  }
+}
