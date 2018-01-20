@@ -13,6 +13,11 @@ class StickyMenu extends React.Component {
         <h1 className="sticky-menu__logo">Logo</h1>
         <span className="sticky-menu__toggle" onClick={this.props.handleMenuToggle}>Menu</span>
         <ul className="sticky-menu__list">
+          <li>
+            <a href="#favorites"
+               className="sticky-menu__link"
+               onClick={() => this.props.submitFavorites()} >Favorites</a>
+          </li>
           {this.props.menuItems.map((menuItem, index) => {
             return (
               <li key={index} className="sticky-menu__list-item">

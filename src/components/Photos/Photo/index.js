@@ -7,7 +7,7 @@ class Photo extends React.Component {
     return (
       <div className="photo__content" style={{backgroundImage: `url(${this.props.photo.image_url})`}}>
         <span className="srt">{this.props.photo.description}</span>
-        <button onClick={() => this.props.saveFavorite(this.props.photo.id)}>Save</button>
+        <button onClick={() => this.props.addFavorite(this.props.photo.id)}>Save</button>
         <button onClick={() => this.props.removeFavorite(this.props.photo.id)}>Remove</button>
       </div>
     )
@@ -15,7 +15,7 @@ class Photo extends React.Component {
 
   static propTypes = {
     photo: PropTypes.object.isRequired,
-    saveFavorite: PropTypes.func.isRequired
+    addFavorite: PropTypes.func.isRequired
   }
 }
 
