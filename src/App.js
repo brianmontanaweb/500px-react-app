@@ -1,7 +1,7 @@
 import React from 'react';
-import StickyMenu from './components/StickyMenu';
-import Search from './components/Search';
-import Photo from './components/Photo';
+import StickyMenu from './components/StickyMenu/index';
+import Search from './components/Search/index';
+import Photo from './components/Photo/index';
 import { searchPhotos, orderObjectByKey } from './utilities/Helpers';
 
 class App extends React.Component {
@@ -20,7 +20,8 @@ class App extends React.Component {
     }, {
       name: 'Spiders ACK!',
       tag: 'spider'
-    }]
+    }],
+    favorites: []
   };
 
   handleSearchTag = event => {
@@ -31,13 +32,28 @@ class App extends React.Component {
   submitSearchTag = (tag) => {
     return searchPhotos(tag)
       .then(result => {
-        this.setState({photos: result.photos, userSearch: true});
+        this.setState({
+          photos: result.photos,
+          userSearch: true
+        });
       });
   };
 
   handleMenuToggle = () => {
     this.setState({
       menuToggle: !this.state.menuToggle
+    });
+  };
+
+  saveFavorite = photoId => {
+    this.setState({
+      favorites: [...this.state.favorites, ...this.state.photos.filter(photo => photo.id === photoId)]
+    });
+  };
+
+  removeFavorite = photoId => {
+    this.setState({
+      favorites: [...this.state.favorites.filter(favorite => favorite.id !== photoId)]
     });
   };
 
@@ -60,7 +76,12 @@ class App extends React.Component {
             {orderObjectByKey(this.state.photos, 'highest_rating', true)
               .map((photo, index) => {
                 return (
-                  <Photo key={index} photo={photo} />
+                  <Photo
+                    key={index}
+                    photo={photo}
+                    saveFavorite={this.saveFavorite}
+                    removeFavorite={this.removeFavorite}
+                    favorites={this.state.favorites} />
                 )
               }
             )}

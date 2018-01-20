@@ -15,7 +15,8 @@ Created with create-react-app and 500px api.
 
 Area for features to be updated
 
-* Favorites state
+* X Favorites state
+* Build CSS for favorite handling and when to present save/remove
 * Order by category/preference
 * Store states locally
 * Setup firebase for storing
