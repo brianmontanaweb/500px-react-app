@@ -11,10 +11,10 @@ class Photos extends React.Component {
           this.props.orderObjectByKey(this.props.photos, 'highest_rating', true)
             .map((photo, index) => {
             return (
-            <Photo key={index}
-                   photo={photo}
-                   addFavorite={this.props.addFavorite}
-                   removeFavorite={this.props.removeFavorite} />
+              <Photo key={index}
+                     photo={photo}
+                     addFavorite={this.props.addFavorite}
+                     removeFavorite={this.props.removeFavorite} />
             )
           }
           ) :

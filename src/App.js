@@ -2,15 +2,16 @@ import React from 'react';
 
 import { searchPhotos, orderObjectByKey } from './utilities/Helpers';
 
-import StickyMenu from './components/StickyMenu';
-import Search from './components/Search';
-import Photos from './components/Photos';
+import StickyMenu from './Components/StickyMenu';
+import Search from './Components/Search';
+import Photos from './Components/Photos';
 
 class App extends React.Component {
 
   state = {
     photos: [],
     searchTag: '',
+    toggleTag: 'photos',
     menuToggle: false,
     userSearch: false,
     menuItems: [{
@@ -23,7 +24,8 @@ class App extends React.Component {
       name: 'Spiders ACK!',
       tag: 'spider'
     }],
-    favorites: []
+    favorites: [],
+    error: ''
   };
 
   handleSearchTag = event => {
@@ -33,12 +35,20 @@ class App extends React.Component {
 
   submitSearchTag = (tag) => {
     return searchPhotos(tag)
-      .then(result => {
-        this.setState({
-          photos: result.photos,
-          userSearch: true
-        });
-      });
+      .catch(error => {
+        console.log('Error fetching data', error);
+      }).then(result => {
+        if(result.status !== 401) {
+          this.setState({
+            photos: result.photos,
+            userSearch: true
+          });
+        } else {
+          this.setState({
+            error: result.error
+          });
+        }
+      })
   };
 
   handleMenuToggle = () => {
@@ -49,7 +59,8 @@ class App extends React.Component {
 
   addFavorite = photoId => {
     let favoriteExists = false;
-    this.state.favorites.map(favorite => {
+
+    this.state.favorites.forEach(favorite => {
       if(favorite.id === photoId) favoriteExists = true;
     });
 
