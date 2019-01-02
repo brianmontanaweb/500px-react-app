@@ -30,27 +30,12 @@ class App extends React.Component {
 
   handleSearchTag = event => {
     const searchTag = event.target.value;
-    this.setState({searchTag})
+    this.setState({searchTag});
   };
 
-  submitSearchTag = (tag) => {
-    return searchPhotos(tag)
-      .catch(error => {
-        console.log('Error fetching data', error);
-      }).then(result => {
-        if(result.status !== 401) {
-          this.setState({
-            photos: result.photos || [],
-            userSearch: true
-          });
-        } else {
-          this.setState({
-            error: result.error,
-            photos: [],
-            userSearch: true
-          });
-        }
-      })
+  submitSearchTag = () => {
+    const photos = searchPhotos();
+    this.setState({photos});
   };
 
   handleMenuToggle = () => {
