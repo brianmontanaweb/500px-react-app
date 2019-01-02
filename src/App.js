@@ -40,12 +40,14 @@ class App extends React.Component {
       }).then(result => {
         if(result.status !== 401) {
           this.setState({
-            photos: result.photos,
+            photos: result.photos || [],
             userSearch: true
           });
         } else {
           this.setState({
-            error: result.error
+            error: result.error,
+            photos: [],
+            userSearch: true
           });
         }
       })
