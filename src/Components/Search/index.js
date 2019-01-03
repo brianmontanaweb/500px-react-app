@@ -12,7 +12,7 @@ class Search extends React.Component {
 
     return (
       <form onSubmit={this.updateTag} className="search-form">
-        <label htmlFor="search500px" className="search-form__label">Search for your favorite animal...</label>
+        <label htmlFor="search500px" className="search-form__label">Let's look at dog breeds</label>
         <select
           id="search500px"
           ref={input => this.searchTag = input}
@@ -27,7 +27,7 @@ class Search extends React.Component {
                       {breed}
               </option>
               )
-            }) : 'Sorry no dog breeds are listed :('
+            }) : 'Sorry no dog breeds found :('
           }
           
         </select>

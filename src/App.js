@@ -16,16 +16,7 @@ class App extends React.Component {
     toggleTag: 'photos',
     menuToggle: false,
     userSearch: false,
-    menuItems: [{
-      name: 'Dog',
-      tag: 'dog'
-    }, {
-      name: 'Kitten',
-      tag: 'kitten'
-    }, {
-      name: 'Spiders ACK!',
-      tag: 'spider'
-    }],
+    menuItems: [],
     favorites: [],
     error: ''
   };
