@@ -1,14 +1,16 @@
 import React from 'react';
 
-import { searchPhotos, orderObjectByKey } from './utilities/Helpers';
+import { searchPhotos, orderObjectByKey, flattenKey } from './utilities/Helpers';
 
 import StickyMenu from './Components/StickyMenu';
 import Search from './Components/Search';
 import Photos from './Components/Photos';
+import { DogBreeds, DogImages } from './utilities/FetchDogs';
 
 class App extends React.Component {
 
   state = {
+    breeds: [],
     photos: [],
     searchTag: '',
     toggleTag: 'photos',
@@ -31,6 +33,12 @@ class App extends React.Component {
   handleSearchTag = event => {
     const searchTag = event.target.value;
     this.setState({searchTag});
+    fetch(DogImages(searchTag))
+      .then(res => res.json())
+      .then(resJson => {
+        const photos = resJson.message;
+        this.setState({photos});
+      });
   };
 
   submitSearchTag = () => {
@@ -70,8 +78,27 @@ class App extends React.Component {
     })
   };
 
-  //Possibly use localstorage to save last search and state
+  dogBreeds = () => {
+    fetch(DogBreeds())
+      .then(res => res.json())
+      .then(resJson => {
+        const breedsObj = resJson.message;
+        const breeds = Object.keys(breedsObj);
 
+        for(let key in breedsObj) {
+          if(breedsObj[key].length) {
+            flattenKey(breedsObj[key], key).forEach(el => breeds.push(el));
+          }
+        }
+        this.setState({breeds});
+      });
+  };
+
+  constructor() {
+    super();
+    this.dogBreeds();
+  }
+  
   render() {
     return (
       <React.Fragment>
@@ -83,7 +110,8 @@ class App extends React.Component {
                     submitFavorites={this.submitFavorites}/>
 
         <Search handleSearchTag={this.handleSearchTag}
-                submitSearchTag={this.submitSearchTag} />
+                submitSearchTag={this.submitSearchTag}
+                breeds={this.state.breeds} />
 
         <Photos photos={this.state.photos}
                 favorites={this.state.favorites}

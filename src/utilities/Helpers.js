@@ -2152,3 +2152,7 @@ export function orderObjectByKey(array, key, bool) {
     return bool ? b - a : a - b;
   })
 }
+
+export function flattenKey(arr, key) {
+  return arr.map(el => `${key}-${el}`);
+}

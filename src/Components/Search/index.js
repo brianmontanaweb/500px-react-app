@@ -13,13 +13,24 @@ class Search extends React.Component {
     return (
       <form onSubmit={this.updateTag} className="search-form">
         <label htmlFor="search500px" className="search-form__label">Search for your favorite animal...</label>
-        <input
+        <select
           id="search500px"
           ref={input => this.searchTag = input}
           onChange={this.props.handleSearchTag}
-          type="text"
           placeholder={'Search'}
-          className="search-form__input"/>
+          className="search-form__input">
+          {this.props.breeds.length > 0 ? 
+            this.props.breeds.map((breed, index) => {
+              return (
+              <option value={breed}
+                      key={index}>
+                      {breed}
+              </option>
+              )
+            }) : 'Sorry no dog breeds are listed :('
+          }
+          
+        </select>
         <button type='submit' className="search-form__btn">Search</button>
       </form>
     )
@@ -27,7 +38,8 @@ class Search extends React.Component {
 
   static propTypes = {
     handleSearchTag: PropTypes.func.isRequired,
-    submitSearchTag: PropTypes.func.isRequired
+    submitSearchTag: PropTypes.func.isRequired,
+    breeds: PropTypes.array.isRequired,
   }
 }
 
