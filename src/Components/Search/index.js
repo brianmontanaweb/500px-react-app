@@ -15,7 +15,6 @@ class Search extends React.Component {
         <label htmlFor="search500px" className="search-form__label">Let's look at dog breeds</label>
         <select
           id="search500px"
-          ref={input => this.searchTag = input}
           onChange={this.props.handleSearchTag}
           placeholder={'Search'}
           className="search-form__input">
@@ -31,7 +30,6 @@ class Search extends React.Component {
           }
           
         </select>
-        <button type='submit' className="search-form__btn">Search</button>
       </form>
     )
   }
